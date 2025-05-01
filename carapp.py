@@ -13,16 +13,16 @@ def load_xgb_model():
 # Streamlit app
 st.title("Car Price Prediction App using XGBoost")
 
-# Input fields for car features
-brand = st.text_input("Brand")
-model = st.text_input("Model")
-year = st.number_input("Year", min_value=1900, max_value=2025, step=1)
+# Dropdown fields for car features
+brand = st.selectbox("Select Car Brand", ['Brand1', 'Brand2', 'Brand3'])  # Replace with actual brand list
+model = st.selectbox("Select Car Model", ['Model1', 'Model2', 'Model3'])  # Replace with actual model list
+year = st.selectbox("Select Car Year", list(range(1900, 2026)))  # Dropdown with years from 1900 to 2025
 engine_size = st.number_input("Engine Size (L)", min_value=0.0, step=0.1)
-fuel_type = st.selectbox("Fuel Type", ["Petrol", "Diesel", "Electric"])
-transmission = st.selectbox("Transmission", ["Manual", "Automatic"])
+fuel_type = st.selectbox("Select Fuel Type", ["Petrol", "Diesel", "Electric"])
+transmission = st.selectbox("Select Transmission", ["Manual", "Automatic"])
 mileage = st.number_input("Mileage (km)", min_value=0, step=100)
-doors = st.number_input("Doors", min_value=1, max_value=5, step=1)
-owner_count = st.number_input("Owner Count", min_value=1, step=1)
+doors = st.selectbox("Select Number of Doors", [2, 3, 4, 5])  # Dropdown for number of doors
+owner_count = st.selectbox("Select Owner Count", [1, 2, 3, 4])  # Dropdown for number of previous owners
 
 # Prepare input data
 input_data = pd.DataFrame([[brand, model, year, engine_size, fuel_type, transmission, mileage, doors, owner_count]],
