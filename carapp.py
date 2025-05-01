@@ -1,6 +1,5 @@
 import pickle
 import streamlit as st
-import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
@@ -14,8 +13,23 @@ def load_xgb_model():
 st.title("Car Price Prediction App using XGBoost")
 
 # Dropdown fields for car features
-brand = st.selectbox("Select Car Brand", ['Brand1', 'Brand2', 'Brand3'])  # Replace with actual brand list
-model = st.selectbox("Select Car Model", ['Model1', 'Model2', 'Model3'])  # Replace with actual model list
+brands = ['Kia', 'Chevrolet', 'Mercedes', 'Audi', 'Volkswagen', 'Toyota', 'Honda', 'BMW', 'Hyundai', 'Ford']
+models = {
+    'Kia': ['Rio', 'Sportage', 'Optima'],
+    'Chevrolet': ['Malibu', 'Equinox', 'Impala'],
+    'Mercedes': ['GLA', 'GLC', 'E-Class'],
+    'Audi': ['Q5', 'A3', 'A4'],
+    'Volkswagen': ['Golf', 'Tiguan', 'Passat'],
+    'Toyota': ['Camry', 'RAV4', 'Corolla'],
+    'Honda': ['Civic', 'CR-V', 'Accord'],
+    'BMW': ['5 Series', 'X5', '3 Series'],
+    'Hyundai': ['Elantra', 'Sonata', 'Tucson'],
+    'Ford': ['Explorer', 'Fiesta']
+}
+
+# User input fields
+brand = st.selectbox("Select Car Brand", brands)
+model = st.selectbox("Select Car Model", models[brand])  # Models change based on the selected brand
 year = st.selectbox("Select Car Year", list(range(1900, 2026)))  # Dropdown with years from 1900 to 2025
 engine_size = st.number_input("Engine Size (L)", min_value=0.0, step=0.1)
 fuel_type = st.selectbox("Select Fuel Type", ["Petrol", "Diesel", "Electric"])
